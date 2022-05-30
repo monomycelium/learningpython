@@ -6,10 +6,8 @@ headers = {
   'AccountKey': 'YgpFVWKSQzatgONxbRGkyQ==',
   'accept\'': 'application/json'
 }
-response = requests.request("GET", "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=%s" % input('Enter Bus Stop Number: '), headers=headers, data={})
-dataX = json.loads(response.text)['Services'][int(input('Enter Bus Number: '))]
-
-print(dataX['ServiceNo'])
+response = requests.request("GET", "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=43389", headers=headers, data={})
+dataX = json.loads(response.text)['Services'][2]
 
 if len(str(dataX['NextBus2']['EstimatedArrival'])) == 25:
     timeX = datetime.strptime(dataX['NextBus']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
