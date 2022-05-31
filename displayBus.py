@@ -9,51 +9,47 @@ headers = {
 response = requests.request("GET", "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=43389", headers=headers, data={})
 dataX = json.loads(response.text)['Services'][2]
 
+# if len(str(dataX['NextBus2']['EstimatedArrival'])) == 25:
+#     timeX = datetime.strptime(dataX['NextBus']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+#     x = str(timeX)[2:7]
+# else:
+#     x = None
+# if len(str(dataX['NextBus2']['EstimatedArrival'])) == 25:
+#     timeY = datetime.strptime(dataX['NextBus2']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+#     y = str(timeY)[2:7]
+# else:
+#     y = None
+# if len(str(dataX['NextBus3']['EstimatedArrival'])) == 25:
+#     timeZ = datetime.strptime(dataX['NextBus3']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+#     z = str(timeZ)[2:7]
+# else:
+#     z = None
+
 if len(str(dataX['NextBus2']['EstimatedArrival'])) == 25:
-    timeX = datetime.strptime(dataX['NextBus']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+    timeX = datetime.strptime(dataX['NextBus']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")
 else:
+    print("Error setting timeX: " + str(datetime.strptime(dataX['NextBus']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")))
     timeX = None
 if len(str(dataX['NextBus2']['EstimatedArrival'])) == 25:
-    timeY = datetime.strptime(dataX['NextBus2']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+    timeY = datetime.strptime(dataX['NextBus2']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")
 else:
+    print("Error setting timeY: " + str(datetime.strptime(dataX['NextBus2']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")))
     timeY = None
 if len(str(dataX['NextBus3']['EstimatedArrival'])) == 25:
-    timeZ = datetime.strptime(dataX['NextBus3']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00") - datetime.now()
+    timeZ = datetime.strptime(dataX['NextBus3']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")
 else:
+    print("Error setting timeZ: " + str(datetime.strptime(dataX['NextBus3']['EstimatedArrival'], "%Y-%m-%dT%H:%M:%S+08:00")))
     timeZ = None
-    
-#--------------------------------------
-#    ___  ___  _ ____
-#   / _ \/ _ \(_) __/__  __ __
-#  / , _/ ___/ /\ \/ _ \/ // /
-# /_/|_/_/  /_/___/ .__/\_, /
-#                /_/   /___/
-#
-#  lcd_i2c.py
-#  LCD test script using I2C backpack.
-#  Supports 16x2 and 20x4 screens.
-#
-# Author : Matt Hawkins
-# Date   : 20/09/2015
-#
-# http://www.raspberrypi-spy.co.uk/
-#
-# Copyright 2015 Matt Hawkins
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#--------------------------------------
+
+# Just for now, this block will be commented.
+# if len(str(x)) != 5:
+#     x = '     '
+# if len(str(y)) != 5:
+#     y = '     '
+# if len(str(z)) != 5:
+#     z = '     '
+
+# lcd_i2c.py starts here.
 
 import smbus
 import time
@@ -137,19 +133,83 @@ def main():
 
   while True:
 
-    # Send some test
-    if len(str(timeX)) == 14:
-        lcd_string(str(timeX)[2:7], LCD_LINE_1)
-    if len(str(timeY)) == 14 and len(str(timeZ)) == 14:
-        lcd_string(str(timeY)[2:7] + '      ' + str(timeZ)[2:7], LCD_LINE_2)
+#     # Send some test
+# if len(str(timeX)) == 14:
+#     print(x)
+# if len(str(timeY)) == 14:
+#     print(y)
+# if len(str(timeZ)) == 14:
+#     print(z)
+
+# if len(str(x)) != 5:
+#     x = '     '
+# if len(str(y)) != 5:
+#     y = '     '
+# if len(str(z)) != 5:
+#     z = '     '
+
+    if len(str(timeX - datetime.now())) == 14:
+        x = str(timeX - datetime.now())[2:7]
     else:
-        if len(str(timeY)) == 14:
-            lcd_string(str(timeY)[2:7], LCD_LINE_2)
-        if len(str(timeZ)) == 14:
-            lcd_string(str(timeZ)[2:7], LCD_LINE_2)
+        # print("Error printing time to timeX: " + str(timeX - datetime.now()))
+        x = 'Arr  '
+    if len(str(timeY - datetime.now())) == 14:
+        y = str(timeY - datetime.now())[2:7]
+    else:
+        # print("Error printing time to timeY: " + str(timeX - datetime.now()))
+        y = '     '
+    if len(str(timeZ - datetime.now())) == 14:
+        z = str(timeZ - datetime.now())[2:7]
+    else:
+        # print("Error printing time to timeZ: " + str(timeX - datetime.now()))
+        z = '     '
+
+    lcd_string(x, LCD_LINE_1)
+    lcd_string(y + '      ' + z, LCD_LINE_2)
+
+    time.sleep(1)
+
+    # else:
+    #     if len(str(timeY)) == 14:
+    #         lcd_string(str(timeY)[2:7], LCD_LINE_2)
+    #     elif len(str(timeZ)) == 14:
+    #         lcd_string(str(timeZ)[2:7], LCD_LINE_2)
 
     # lcd_string(str(timeY)[2:7] + '    ' + str(timeZ)[2:7], LCD_LINE_2)
 
 if __name__ == '__main__':
     main()
     lcd_byte(0x01, LCD_CMD)
+
+#--------------------------------------
+#    ___  ___  _ ____
+#   / _ \/ _ \(_) __/__  __ __
+#  / , _/ ___/ /\ \/ _ \/ // /
+# /_/|_/_/  /_/___/ .__/\_, /
+#                /_/   /___/
+#
+#  lcd_i2c.py
+#  LCD test script using I2C backpack.
+#  Supports 16x2 and 20x4 screens.
+#
+# Author : Matt Hawkins
+# Date   : 20/09/2015
+#
+# http://www.raspberrypi-spy.co.uk/
+#
+# Copyright 2015 Matt Hawkins
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#--------------------------------------
