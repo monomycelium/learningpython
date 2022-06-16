@@ -1,5 +1,6 @@
 while true
 do
-  /usr/bin/python3 /home/pi/LearningPython/bus/displayBus.py
+  kill -9 $(pidof python3)
+  python3 /home/pi/LearningPython/bus/displayBus.py &
   sleep 1m
 done
