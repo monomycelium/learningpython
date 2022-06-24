@@ -6,8 +6,4 @@ def fetchtemp():
 		return str(temp)
 
 with open("/home/pi/LearningPython/plottemp.dat", 'a') as f:
-	while True:
-		for x in range(20):
-			f.write(datetime.datetime.today().strftime("%H:%M") + ' ' + fetchtemp() + '\n')
-			time.sleep(60)
-		f.truncate(0)
+	f.write(datetime.datetime.today().strftime("%H:%M") + ' ' + fetchtemp() + '\n')
