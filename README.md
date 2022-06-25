@@ -21,7 +21,7 @@ I used LTA's DataMall API to find the estimated arrival time of a particular ser
 To run this, use this command on a Raspberry Pi connected to a 16 by 2 I2C LCD:
 
 ```
-nohup /home/pi/LearningPython/bus/displayBus.sh &
+python3 /home/pi/LearningPython/bus/displayBus.py
 ```
 
 An error might be that the address of your I2C LCD is incorrect inside `displayBus.py`. Another common address aside from `0x3F` is `0x27`, but you might have to check your datasheet or use a program to find yours.
@@ -29,5 +29,10 @@ An error might be that the address of your I2C LCD is incorrect inside `displayB
 To stop the process, run this command:
 
 ```
-sudo kill -9 $(pidof /bin/sh /home/pi/LearningPython/bus/displayBus.sh python3)
+sudo kill -9 $(pidof python3)
+```
+
+If you wish to implement this using `crontab`:
+```
+45 06 * * 1-5 nohup python3 /home/pi/LearningPython/bus/displayBus.py &
 ```
