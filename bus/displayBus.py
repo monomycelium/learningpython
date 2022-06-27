@@ -97,17 +97,14 @@ def main():
         if len(str(timeX - datetime.now())) == 14:
             x = str(timeX - datetime.now())[2:7]
         else:
-            # print("Error printing time to timeX: " + str(timeX - datetime.now()))
             x = 'Arr  '
         if len(str(timeY - datetime.now())) == 14:
             y = str(timeY - datetime.now())[2:7]
         else:
-            # print("Error printing time to timeY: " + str(timeX - datetime.now()))
             y = '     '
         if len(str(timeZ - datetime.now())) == 14:
             z = str(timeZ - datetime.now())[2:7]
         else:
-            # print("Error printing time to timeZ: " + str(timeX - datetime.now()))
             z = '     '
 
         lcd_string(x, LCD_LINE_1)
