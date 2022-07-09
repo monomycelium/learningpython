@@ -47,8 +47,8 @@ LCD_LINE_2 = 0xC0 # LCD RAM address for the 2nd line
 LCD_LINE_3 = 0x94 # LCD RAM address for the 3rd line
 LCD_LINE_4 = 0xD4 # LCD RAM address for the 4th line
 
-LCD_BACKLIGHT  = 0x08  # On
-#LCD_BACKLIGHT = 0x00  # Off
+# LCD_BACKLIGHT  = 0x08  # On
+LCD_BACKLIGHT = 0x00  # Off
 
 ENABLE = 0b00000100 # Enable bit
 
@@ -111,19 +111,19 @@ def main():
   # Initialise display
   lcd_init()
 
-  while True:
+  # while True:
 
-    # Send some test
-    lcd_string("RPiSpy         <",LCD_LINE_1)
-    lcd_string("I2C LCD        <",LCD_LINE_2)
+  #   # Send some test
+  #   lcd_string("RPiSpy         <",LCD_LINE_1)
+  #   lcd_string("I2C LCD        <",LCD_LINE_2)
 
-    time.sleep(3)
+  #   time.sleep(3)
   
-    # Send some more text
-    lcd_string(">         RPiSpy",LCD_LINE_1)
-    lcd_string(">        I2C LCD",LCD_LINE_2)
+  #   # Send some more text
+  #   lcd_string(">         RPiSpy",LCD_LINE_1)
+  #   lcd_string(">        I2C LCD",LCD_LINE_2)
 
-    time.sleep(3)
+  #   time.sleep(3)
 
 if __name__ == '__main__':
 
