@@ -83,9 +83,6 @@ def lcd_toggle_enable(bits):
   bus.write_byte(I2C_ADDR,(bits & ~ENABLE))
   time.sleep(E_DELAY)
 
-def main():
-  # Main program block
-
 if __name__ == '__main__':
 
   try:
