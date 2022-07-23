@@ -1,4 +1,4 @@
-# LearningPython
+# learningPython
 
 Isn't Python immaculate? From data oversight to delightful games, the plethora of things you can accomplish is compelling. This repository holds my documentation of what I have been learning through Python. Relish all the blunders I've made!
 
