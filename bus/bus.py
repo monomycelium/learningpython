@@ -29,3 +29,4 @@ if len(str(timeY)) == 14:
     print(str(timeY)[2:7])
 if len(str(timeZ)) == 14:
     print(str(timeZ)[2:7])
+    
