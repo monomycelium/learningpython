@@ -53,8 +53,8 @@ ENABLE = 0b00000100
 E_PULSE = 0.0005
 E_DELAY = 0.0005
 
-#bus = smbus.SMBus(0)  # Rev 1 Pi
-bus = smbus.SMBus(1) # Rev 2 Pi
+#bus = smbus2.SMBus(0)  # Rev 1 Pi
+bus = smbus2.SMBus(1) # Rev 2 Pi
 
 def lcd_init():
   lcd_byte(0x33,LCD_CMD)
