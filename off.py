@@ -31,7 +31,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #--------------------------------------
-import smbus
+import smbus2
 import time
 
 I2C_ADDR  = 0x3F # I2C address
