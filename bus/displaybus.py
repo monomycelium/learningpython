@@ -10,7 +10,7 @@ headers = {
 
 # code adapted from `lcd_i2c.py` starts here.
 
-import smbus
+import smbus2 as smbus
 import time
 
 # I2C Address
@@ -33,7 +33,7 @@ E_PULSE = 0.0005
 E_DELAY = 0.0005
 
 #bus = smbus.SMBus(0)  # Rev 1 Pi uses 0
-bus = smbus.SMBus(1) # Rev 2 Pi uses 1
+bus = smbus.SMBus(21) # Rev 2 Pi uses 1
 
 def lcd_init():
   lcd_byte(0x33,LCD_CMD)
